@@ -45,21 +45,22 @@
         }
     </script>
 </head>
-<body>
+<body onload="calculateSpeeds()">
     <h2>Z1 Final Drive Ratio Comparison Calculator</h2>
 	
 	<label for="width">Rear Tire Size:</label>
-    <input type="number" id="width" value="275" style="width: 40px;"/>
-    <input type="number" id="aspectRatio" value="35" style="width: 30px;"/>
+    <input type="number" id="width" value="275" style="width: 5ch;"/>
+	<label for="aspectRatio">/</label>
+    <input type="number" id="aspectRatio" value="35" style="width: 4ch;"/>
     <label for="wheelDiameter">R</label>
-    <input type="number" id="wheelDiameter" value="19" style="width: 30px;"/>
+    <input type="number" id="wheelDiameter" value="19" style="width: 4ch;"/>
 	<br />
 	
-    <label for="transmission">Select Transmission:</label>
+    <label for="transmission">Transmission:</label>
     <select id="transmission">
-        <option value="manual">Manual</option>
-        <option value="auto7">Automatic 7-Speed</option>
-        <option value="auto5">Automatic 5-Speed</option>
+        <option value="manual">6-Speed Manual</option>
+        <option value="auto7">7-Speed Automatic</option>
+        <option value="auto5">5-Speed Automatic</option>
     </select>
     <script>
         document.getElementById('transmission').addEventListener('change', function() {
@@ -77,9 +78,19 @@
     <br />
 	
 	<label for="redline">Redline (RPM):</label>
-    <input type="number" id="redline" value="7500" />
-	<br />
-    <label for="beforeFinalDrive">Select Before Final Drive Ratio:</label>
+    <input type="number" id="redline" value="7500" style="width: 6ch;"/>
+	  <br />
+	  <br />
+	  
+
+    
+
+    
+    <button onclick="calculateSpeeds()">Recalculate</button>
+    
+    <div style="display: flex; gap: 20px;">
+        <div>
+		    <label for="beforeFinalDrive">ORIGINAL Final Drive Ratio:</label>
     <select id="beforeFinalDrive">
         <option value="3.36">3.36</option>
         <option value="3.54" selected>3.54</option>
@@ -88,8 +99,13 @@
         <option value="4.09">4.09</option>
         <option value="4.36">4.36</option>
     </select>
-    
-    <label for="afterFinalDrive">Select After Final Drive Ratio:</label>
+            <h4>Top Speed Per Gear:</h4>
+            <div id="outputBefore"></div>
+            <h4>Cruising RPM:</h4>
+            <div id="cruisingRPMBefore"></div>
+        </div>
+        <div>
+		    <label for="afterFinalDrive">NEW Final Drive Ratio:</label>
     <select id="afterFinalDrive">
         <option value="3.36">3.36</option>
         <option value="3.54">3.54</option>
@@ -98,20 +114,9 @@
         <option value="4.09" selected>4.09</option>
         <option value="4.36">4.36</option>
     </select>
-    
-    <button onclick="calculateSpeeds()">Calculate</button>
-    
-    <div style="display: flex; gap: 20px;">
-        <div>
-            <h3>Before Final Drive - Top Speed Per Gear:</h3>
-            <div id="outputBefore"></div>
-            <h3>Cruising RPM:</h3>
-            <div id="cruisingRPMBefore"></div>
-        </div>
-        <div>
-            <h3>After Final Drive - Top Speed Per Gear:</h3>
+            <h4>Top Speed Per Gear:</h4>
             <div id="outputAfter"></div>
-            <h3>Cruising RPM:</h3>
+            <h4>Cruising RPM:</h4>
             <div id="cruisingRPMAfter"></div>
         </div>
     </div>
